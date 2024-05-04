@@ -1,0 +1,1 @@
+C:\projects\rnext\khana-khazana\public\assets\images
