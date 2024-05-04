@@ -72,10 +72,8 @@ async function findUserByCredentials(credentials) {
 
 
 async function updateFavorite(recipeId, authId) {
-    await connectMongo()
     const user = await userModel.findById(authId);
     console.log(user)
-
 
     if (user) {
         const found = user.favourites.find(

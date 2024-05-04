@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 
 async function getAllRecipes() {
     try {
-        await connectMongo()
         const allRecipes = await recipeModel.find();
         return allRecipes;
     } catch (error) {
@@ -29,7 +28,6 @@ function isValidObjectId(id) {
 }
 
 async function getRecipeById(id) {
-    await connectMongo()
     // Validate the ObjectId format
     if (!isValidObjectId(id)) {
         console.log('Invalid ObjectId provided:', id);
@@ -47,7 +45,6 @@ async function getRecipeById(id) {
 
 async function getRecipesByCategory(category) {
     try {
-        await connectMongo()
         const recipes = await recipeModel.find({ category: category });
         return recipes;
     } catch (error) {
@@ -57,12 +54,10 @@ async function getRecipesByCategory(category) {
 }
 
 async function createUser(user) {
-    await connectMongo()
     return await userModel.create(user);
 }
 
 async function findUserByCredentials(credentials) {
-    await connectMongo()
     const user = await userModel.findOne(credentials).lean();
     if (user) {
         return user;
@@ -72,10 +67,8 @@ async function findUserByCredentials(credentials) {
 
 
 async function updateFavorite(recipeId, authId) {
-    await connectMongo()
     const user = await userModel.findById(authId);
     console.log(user)
-
 
     if (user) {
         const found = user.favourites.find(
